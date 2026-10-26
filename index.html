@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Informatika Quest: Setelah Data Diolah</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7f8;--card:#fff;--ink:#17283b;--mut:#5b6b7a;--tl:#0d8a8c;--sun:#f2b134;--cor:#e2553a;--ok:#1d8a4e;--ln:#d9e2e7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1a24;--card:#18283a;--ink:#e8eff4;--mut:#9fb0be;--ln:#2a3d52;--tl:#3cc3c5}}
+:root[data-theme=dark]{--bg:#0f1a24;--card:#18283a;--ink:#e8eff4;--mut:#9fb0be;--ln:#2a3d52;--tl:#3cc3c5}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Lexend,system-ui,sans-serif}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;line-height:1.2;margin:.6em 0 .3em}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--ln)}
+nav button{flex:none;border:0;border-radius:999px;padding:8px 14px;background:transparent;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+nav button.on{background:var(--tl);color:#fff}
+main{max-width:860px;margin:0 auto;padding:18px 14px 60px}
+.pg{display:none}.pg.on{display:block}
+.card{background:var(--card);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 18px rgba(20,40,60,.08)}
+.hero{background:linear-gradient(135deg,#0d8a8c,#17283b);color:#fff;border-radius:24px;padding:34px 22px}
+.hero h1{font-size:clamp(28px,6vw,44px);margin:0 0 8px}
+.btn{border:0;border-radius:12px;padding:10px 16px;background:var(--sun);color:#17283b;font:500 15px Lexend,sans-serif;cursor:pointer;margin:4px 4px 4px 0}
+.btn.s{background:var(--ln);color:var(--ink)}.btn:focus-visible,nav button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input,textarea,select{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--ink)}
+textarea{min-height:240px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid var(--ln);padding:8px 10px;text-align:left;vertical-align:top}th{background:var(--tl);color:#fff}
+.mat h2{color:var(--tl);border-bottom:2px solid var(--sun);padding-bottom:4px}
+.tag{display:inline-block;font-size:12px;border-radius:8px;padding:2px 8px;background:var(--ln);margin-right:6px}
+.o{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.o.sel{border-color:var(--tl);background:rgba(13,138,140,.14)}
+.r{margin-top:10px;padding:10px 12px;border-radius:10px;display:none}.r.ok{display:block;background:rgba(29,138,78,.16)}.r.no{display:block;background:rgba(226,85,58,.16)}
+.bar{height:12px;border-radius:9px;background:var(--ln);overflow:hidden}.bar i{display:block;height:100%;background:var(--sun);transition:width .5s}
+.m{display:flex;gap:12px;align-items:center}.m b{font-size:26px}.lock{opacity:.5}
+.chip{display:inline-block;margin:4px;padding:8px 12px;border-radius:10px;background:var(--sun);color:#17283b;cursor:pointer;border:0;font:inherit}.chip[disabled]{opacity:.35}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<nav id="nav"></nav>
+<main>
+<section class="pg" id="beranda">
+<div class="hero"><h1 id="hj">Setelah Data Diolah, Apa Berikutnya?</h1><p>Tafsirkan hasil, periksa kualitas data, lalu susun rekomendasi yang bisa dibuktikan. Selesaikan misi, kumpulkan poin, dan taklukkan tantangan bos.</p><button class="btn" onclick="go('materi')">🚀 Mulai belajar</button></div>
+<div class="card"><div class="m"><b id="lv">Level 1</b><div style="flex:1"><div class="bar"><i id="xb" style="width:0"></i></div><small id="xt"></small></div></div></div>
+</section>
+
+<section class="pg" id="materi">
+<details class="card" id="pg"><summary><b>🧑‍🏫 Panel guru: masukkan materi</b></summary>
+<div class="g" style="margin:10px 0"><input id="fj" placeholder="Judul materi"><input id="fm" placeholder="Mata pelajaran"><input id="fk" placeholder="Kelas"><input id="fb" placeholder="Bab"><input id="fg" placeholder="Nama guru"></div>
+<textarea id="ta" placeholder="Tempel materi di sini"></textarea>
+<p>Unggah TXT: <input type="file" id="fu" accept=".txt,text/plain"></p>
+<button class="btn" onclick="muat()">Muat Materi</button><button class="btn s" onclick="edit()">Edit Materi</button><button class="btn s" onclick="simpan()">Simpan Materi</button><button class="btn s" onclick="resetM()">Reset Materi</button>
+<p><small>Materi tampil persis seperti yang ditempel. Zona Tantangan bersumber dari materi bawaan di bab ini.</small></p></details>
+<h2 id="mt"></h2><p id="mi" style="color:var(--mut)"></p>
+<div class="card mat" id="mb"></div>
+<button class="btn" onclick="baca()">✅ Saya sudah membaca materi</button>
+</section>
+
+<section class="pg" id="peta"><h2>🗺️ Peta Misi</h2><div id="pm"></div></section>
+
+<section class="pg" id="zona"><h2>⚔️ Zona Tantangan</h2>
+<p>Aktivitas di sini dibuat dari materi. Soal berlabel <span class="tag">Penerapan</span> memakai konsep materi pada data baru. Pilih tingkat:
+<select id="fl" onchange="zona()" style="width:auto"><option value="">Semua</option><option value="0">Mudah</option><option value="1">Sedang</option><option value="2">Sulit</option></select></p>
+<div id="zb"></div></section>
+
+<section class="pg" id="kuis"><h2>📝 Kuis Interaktif</h2><p>Soal pilihan ganda dan benar/salah, urutannya diacak.</p><div id="kb"></div><button class="btn s" onclick="kuis()">🔀 Acak ulang</button></section>
+
+<section class="pg" id="capai"><h2>🏆 Pencapaian</h2><div id="cb"></div></section>
+
+<section class="pg" id="refleksi"><h2>💭 Refleksi Pembelajaran</h2><div class="card">
+<p>Tulis jawabanmu dengan kata-kata sendiri.</p>
+<label>Apa yang paling kamu pahami hari ini?<textarea id="r1" style="min-height:80px"></textarea></label>
+<label>Bagian mana yang masih membingungkan?<textarea id="r2" style="min-height:80px"></textarea></label>
+<label>Data apa di sekolahmu yang ingin kamu tafsirkan dengan hati-hati?<textarea id="r3" style="min-height:80px"></textarea></label>
+<button class="btn" onclick="refl()">Simpan refleksi</button> <span id="rs"></span></div></section>
+
+<section class="pg" id="atur"><h2>⚙️ Pengaturan</h2><div class="card">
+<p>Tema: <select id="th" onchange="tema()" style="width:auto"><option value="">Ikuti perangkat</option><option>light</option><option>dark</option></select></p>
+<p>Ukuran huruf: <input type="range" id="fs" min="14" max="22" value="16" oninput="document.body.style.fontSize=this.value+'px'" style="width:200px"></p>
+<button class="btn s" onclick="if(confirm('Hapus semua progres?')){S={xp:0,done:{},read:0,ref:{}};sv();go('beranda')}">Reset progres siswa</button></div>
+<div class="card"><b>🔑 Kunci jawaban (guru)</b><p>Kode guru: <input id="kg" type="password" style="width:160px;display:inline-block"> <button class="btn" onclick="kunci()">Buka</button></p><div id="kj"></div></div></section>
+</main>
+<script>
+const MAT=`A. Tujuan Pembelajaran
+• Menafsirkan hasil analisis data dengan memperhatikan konteks dan keterbatasannya.
+• Membandingkan beberapa pilihan solusi berdasarkan bukti yang tersedia.
+• Menyusun rekomendasi yang masuk akal dan dapat diperiksa.
+• Menyampaikan hasil pengolahan data secara jelas, jujur, dan bertanggung jawab.
+B. Pengantar: Setelah Data Diolah, Apa Berikutnya?
+Pada materi sebelumnya, kita belajar menentukan masalah, mengumpulkan data, membersihkan data, menganalisis data, membuat visualisasi, dan menyajikan hasil. Namun, pekerjaan tidak berhenti ketika grafik selesai dibuat. Kita masih perlu memahami arti temuan, memeriksa apakah bukti cukup kuat, lalu memilih tindakan yang sesuai. Contoh sederhana: data menunjukkan antrean kantin rata-rata berlangsung 6 menit. Angka ini memberi gambaran, tetapi belum menjelaskan penyebab antrean. Kita perlu memeriksa waktu pengamatan, jumlah data, jumlah petugas, dan jenis layanan sebelum menyimpulkan solusi.
+C. Memahami Hasil Tanpa Terburu-buru Menyimpulkan
+Ada tiga hal yang perlu dibedakan:
+Istilah\tArti sederhana\tContoh
+Fakta data\tAngka atau catatan yang benar-benar dikumpulkan.\tWaktu antrean tercatat 4, 6, 5, 10, dan 5 menit.
+Temuan\tPola atau ringkasan yang terlihat setelah data dianalisis.\tRata-rata antrean 6 menit; catatan terlama 10 menit.
+Kesimpulan\tPenafsiran yang dibuat berdasarkan temuan dan konteks.\tAntrean mungkin lebih lama pada kondisi tertentu, tetapi penyebabnya perlu diperiksa.
+Ingat: data menunjukkan apa yang tercatat, tetapi tidak selalu menjelaskan mengapa hal itu terjadi. Hubungan antara dua hal juga tidak otomatis membuktikan sebab-akibat.
+D. Memeriksa Apakah Data Cukup Dapat Dipercaya
+Sebelum menggunakan hasil analisis untuk mengambil keputusan, ajukan pertanyaan berikut:
+• Apakah jumlah data cukup untuk menjawab pertanyaan?
+• Apakah data dikumpulkan pada waktu dan kondisi yang beragam?
+• Apakah ada kelompok yang tidak terwakili?
+• Apakah ada data kosong, ganda, atau salah tulis?
+• Apakah pertanyaan survei netral dan tidak menggiring jawaban?
+• Apakah informasi pribadi dilindungi?
+Contoh: sekolah ingin mengetahui pendapat seluruh siswa tentang kantin, tetapi survei hanya diberikan kepada siswa yang membeli makanan. Hasilnya belum tentu mewakili siswa yang membawa bekal atau tidak menggunakan kantin.
+E. Mengubah Temuan Menjadi Rekomendasi
+Rekomendasi yang baik harus berhubungan langsung dengan bukti, dapat dilakukan, dan bisa dievaluasi.
+Temuan\tRekomendasi awal\tHal yang perlu diperiksa
+Antrean lebih panjang pada istirahat pertama.\tAmati proses layanan pada istirahat pertama dan pertimbangkan pengaturan alur antrean.\tApakah jumlah siswa, menu, dan petugas berbeda?
+Banyak siswa memilih buku cerita.\tPertimbangkan menambah variasi buku cerita.\tApakah pilihan itu mewakili seluruh tingkat kelas?
+Keterlambatan meningkat pada hari tertentu.\tPeriksa pola jam kedatangan dan faktor yang mungkin terkait.\tApakah pencatatan konsisten dan jumlah pengamatan memadai?
+F. Studi Kasus: Menentukan Tindakan Berdasarkan Data
+OSIS mencatat jumlah siswa yang mengantre di kantin selama tiga hari. Catatan berikut merupakan contoh latihan, bukan data nyata sekolah.
+Hari\tWaktu pengamatan\tJumlah siswa dalam antrean
+Senin\tIstirahat pertama\t18
+Selasa\tIstirahat pertama\t22
+Rabu\tIstirahat pertama\t20
+Senin\tIstirahat kedua\t9
+Selasa\tIstirahat kedua\t11
+Rabu\tIstirahat kedua\t10
+Diskusikan:
+1. Pada waktu istirahat mana antrean cenderung lebih ramai? Gunakan angka sebagai bukti.
+2. Apa yang dapat disimpulkan dari data tersebut?
+3. Apa yang belum dapat dipastikan dari data tersebut?
+4. Usulkan satu tindakan awal yang masuk akal dan jelaskan alasannya.
+5. Data tambahan apa yang perlu dikumpulkan untuk memeriksa apakah tindakan itu berhasil?
+G. Etika Menggunakan Data
+• Jujur: jangan mengubah atau menyembunyikan angka hanya karena tidak sesuai harapan.
+• Adil: pertimbangkan apakah kelompok yang relevan sudah terwakili.
+• Menjaga privasi: tampilkan hanya informasi pribadi yang benar-benar diperlukan dan diizinkan.
+• Teliti: periksa sumber, rumus, satuan, dan cara pengumpulan.
+• Terbuka: sampaikan keterbatasan data dan hal-hal yang belum dapat dipastikan.
+H. Rangkuman
+Setelah data diolah, kita perlu menafsirkan hasilnya dengan hati-hati, memeriksa kualitas dan keterbatasan data, serta membuat rekomendasi yang didukung bukti. Rekomendasi bukan sekadar pendapat; rekomendasi yang baik menjelaskan temuan yang mendasarinya dan bagaimana keberhasilannya akan diperiksa.`;
+const $=i=>document.getElementById(i),E=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+let S={xp:0,done:{},read:0,ref:{}},M={raw:MAT,j:"",m:"Informatika",k:"",b:"",g:""};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem("iq_s")||"{}"));M=Object.assign(M,JSON.parse(localStorage.getItem("iq_m")||"{}"))}catch(e){}
+function sv(){try{localStorage.setItem("iq_s",JSON.stringify(S))}catch(e){}stat()}
+function parse(t){let L=t.split("\n"),h="",i=0;const b=x=>x.trim().startsWith("•");
+while(i<L.length){let l=L[i].trim();if(!l){i++;continue}
+if(l.includes("\t")&&!b(l)){let r=[];while(i<L.length&&L[i].includes("\t")&&!b(L[i])){r.push(L[i].split("\t"));i++}
+h+='<div class="tw"><table>'+r.map((c,k)=>"<tr>"+c.map(x=>k?"<td>"+E(x)+"</td>":"<th>"+E(x)+"</th>").join("")+"</tr>").join("")+"</table></div>";continue}
+if(b(l)){h+="<ul>";while(i<L.length&&b(L[i])){h+="<li>"+E(L[i].trim().slice(1).trim())+"</li>";i++}h+="</ul>";continue}
+h+=/^[A-H]\. /.test(l)?"<h2>"+E(l)+"</h2>":"<p>"+E(l)+"</p>";i++}return h}
+function showM(){$("mb").innerHTML=parse(M.raw);$("mt").textContent=M.j||"Materi Pembelajaran";$("hj").textContent=M.j||"Setelah Data Diolah, Apa Berikutnya?";
+$("mi").textContent=[M.m,M.k&&"Kelas "+M.k,M.b&&"Bab "+M.b,M.g&&"Guru: "+M.g].filter(Boolean).join(" | ")}
+function muat(){if(!$("ta").value.trim())return alert("Tempel materi dulu.");M={raw:$("ta").value,j:$("fj").value,m:$("fm").value,k:$("fk").value,b:$("fb").value,g:$("fg").value};showM()}
+function edit(){$("ta").value=M.raw;$("fj").value=M.j;$("fm").value=M.m;$("fk").value=M.k;$("fb").value=M.b;$("fg").value=M.g;$("pg").open=true}
+function simpan(){muat();try{localStorage.setItem("iq_m",JSON.stringify(M))}catch(e){}alert("Materi disimpan di peramban ini.")}
+function resetM(){M={raw:MAT,j:"",m:"Informatika",k:"",b:"",g:""};try{localStorage.removeItem("iq_m")}catch(e){}showM();edit()}
+$("fu").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader;r.onload=()=>{$("ta").value=r.result};r.readAsText(f)};
+const PG=[["beranda","🏠 Beranda"],["materi","📖 Materi"],["peta","🗺️ Peta Misi"],["zona","⚔️ Zona Tantangan"],["kuis","📝 Kuis"],["capai","🏆 Pencapaian"],["refleksi","💭 Refleksi"],["atur","⚙️ Pengaturan"]];
+$("nav").innerHTML=PG.map(p=>`<button data-p="${p[0]}" onclick="go('${p[0]}')">${p[1]}</button>`).join("");
+function go(p){document.querySelectorAll(".pg").forEach(x=>x.classList.toggle("on",x.id==p));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.p==p));
+if(p=="peta")peta();if(p=="capai")capai();if(p=="zona")zona();if(p=="kuis")kuis();location.hash=p;scrollTo(0,0)}
+function baca(){S.read=1;sv();alert("Misi membaca selesai! Lanjut ke Peta Misi.")}
+const lvl=()=>Math.floor(S.xp/100)+1;
+function stat(){$("lv").textContent="Level "+lvl();$("xb").style.width=S.xp%100+"%";$("xt").textContent=S.xp+" XP | "+Object.keys(S.done).length+" tantangan benar"}
+const Q=[
+{id:"m1",t:"mc",lv:0,q:"Waktu antrean tercatat 4, 6, 5, 10, dan 5 menit. Pernyataan ini termasuk...",o:["Fakta data","Temuan","Kesimpulan","Rekomendasi","Etika data"],a:0,ex:"Angka atau catatan yang benar-benar dikumpulkan disebut fakta data.",h:["Lihat tabel di bagian C.","Ini catatan mentah, belum diringkas."]},
+{id:"m2",t:"mc",lv:0,q:"Rata-rata antrean 6 menit dan catatan terlama 10 menit adalah contoh...",o:["Fakta data","Temuan","Kesimpulan","Rekomendasi","Privasi"],a:1,ex:"Temuan adalah pola atau ringkasan yang terlihat setelah data dianalisis.",h:["Angka ini hasil dari analisis.","Bandingkan dengan kolom Contoh di bagian C."]},
+{id:"m3",t:"mc",lv:1,q:"Survei kantin hanya diberikan kepada siswa yang membeli makanan. Masalah utamanya adalah...",o:["Pertanyaannya terlalu panjang","Kelompok yang membawa bekal atau tidak ke kantin tidak terwakili","Datanya terlalu banyak","Grafiknya kurang menarik","Rata-rata tidak dihitung"],a:1,ex:"Hasilnya belum tentu mewakili siswa yang membawa bekal atau tidak menggunakan kantin.",h:["Lihat contoh di bagian D.","Siapa yang tidak ikut disurvei?"]},
+{id:"m4",t:"mc",lv:1,q:"Syarat rekomendasi yang baik menurut materi adalah...",o:["Menyenangkan semua pihak","Berhubungan langsung dengan bukti, dapat dilakukan, dan bisa dievaluasi","Singkat dan populer","Berasal dari pendapat pribadi","Tidak menyebut keterbatasan data"],a:1,ex:"Bagian E menyebut tiga syarat: berhubungan dengan bukti, dapat dilakukan, bisa dievaluasi.",h:["Baca kalimat pembuka bagian E."]},
+{id:"m5",t:"mc",lv:2,q:"Ada angka yang tidak sesuai harapan tim. Tindakan yang sesuai prinsip etika data adalah...",o:["Menghapus angka itu","Mengubahnya sedikit","Menyampaikan angka itu apa adanya beserta keterbatasannya","Menyembunyikannya dari laporan","Menggantinya dengan perkiraan"],a:2,ex:"Prinsip jujur dan terbuka: jangan mengubah atau menyembunyikan angka, sampaikan keterbatasan data.",h:["Lihat butir Jujur dan Terbuka di bagian G."]},
+{id:"t1",t:"tf",lv:0,s:"Data selalu menjelaskan mengapa suatu hal terjadi.",a:false,ex:"Data menunjukkan apa yang tercatat, tetapi tidak selalu menjelaskan mengapa.",h:["Baca kalimat Ingat di bagian C."]},
+{id:"t2",t:"tf",lv:0,s:"Hubungan antara dua hal tidak otomatis membuktikan sebab-akibat.",a:true,ex:"Sesuai kalimat Ingat di bagian C.",h:["Baca kalimat Ingat di bagian C."]},
+{id:"t3",t:"tf",lv:1,s:"Rekomendasi hanyalah pendapat.",a:false,ex:"Rekomendasi yang baik menjelaskan temuan yang mendasarinya dan cara memeriksa keberhasilannya (bagian H).",h:["Lihat Rangkuman."]},
+{id:"t4",t:"tf",lv:1,s:"Keterbatasan data sebaiknya disampaikan, bukan disembunyikan.",a:true,ex:"Prinsip Terbuka pada bagian G.",h:["Lihat butir Terbuka."]},
+{id:"c1",t:"mat",lv:0,q:"Cocokkan istilah dengan arti sederhananya.",p:[["Fakta data","Angka atau catatan yang benar-benar dikumpulkan."],["Temuan","Pola atau ringkasan yang terlihat setelah data dianalisis."],["Kesimpulan","Penafsiran yang dibuat berdasarkan temuan dan konteks."]],ex:"Sumber: tabel bagian C.",h:["Kesimpulan memakai konteks."]},
+{id:"c2",t:"mat",lv:1,q:"Cocokkan prinsip etika dengan maknanya.",p:[["Jujur","Jangan mengubah atau menyembunyikan angka."],["Adil","Pertimbangkan apakah kelompok yang relevan terwakili."],["Menjaga privasi","Tampilkan hanya informasi pribadi yang diperlukan dan diizinkan."],["Teliti","Periksa sumber, rumus, satuan, dan cara pengumpulan."]],ex:"Sumber: bagian G.",h:["Lihat daftar di bagian G."]},
+{id:"s1",t:"scr",lv:0,w:"TEMUAN",q:"Pola atau ringkasan yang terlihat setelah data dianalisis.",ex:"Istilah: temuan.",h:["Terdiri dari 6 huruf, diawali T."]},
+{id:"s2",t:"scr",lv:1,w:"REKOMENDASI",q:"Usulan tindakan yang didukung bukti dan bisa dievaluasi.",ex:"Istilah: rekomendasi.",h:["Diawali R, 11 huruf."]},
+{id:"o1",t:"ord",lv:0,q:"Urutkan tahapan pengolahan data dari materi sebelumnya (disebut di bagian B).",it:["Menentukan masalah","Mengumpulkan data","Membersihkan data","Menganalisis data","Membuat visualisasi","Menyajikan hasil"],ex:"Urutan sesuai kalimat di bagian B.",h:["Dimulai dari menentukan masalah."]},
+{id:"f1",t:"fill",lv:0,q:"Fakta data adalah angka atau catatan yang benar-benar ___.",a:["dikumpulkan"],ex:"Bagian C.",h:["Kata kerja pasif dari kumpul."]},
+{id:"f2",t:"fill",lv:1,q:"Rekomendasi bukan sekadar ___; rekomendasi yang baik menjelaskan temuan yang mendasarinya.",a:["pendapat"],ex:"Bagian H.",h:["Lawan dari bukti."]},
+{id:"k1",t:"sh",lv:1,tag:"Penerapan",q:"Studi kasus: pada istirahat mana antrean cenderung lebih ramai? Jelaskan dengan angka.",k:[["pertama"],["18","22","20"]],ex:"Istirahat pertama (18, 22, 20) lebih ramai daripada istirahat kedua (9, 11, 10).",h:["Bandingkan dua kelompok angka.","Sebut minimal satu angka."]},
+{id:"k2",t:"sh",lv:2,tag:"Penerapan",q:"Apa yang belum dapat dipastikan dari data antrean OSIS?",k:[["penyebab","mengapa","kenapa","sebab"]],ex:"Data hanya mencatat jumlah antrean; penyebab perbedaan belum diketahui (jumlah siswa, menu, petugas) dan pengamatan baru tiga hari.",h:["Ingat kalimat Ingat di bagian C."]},
+{id:"p1",t:"num",lv:1,tag:"Praktik",q:"Hitung rata-rata jumlah siswa dalam antrean pada istirahat pertama (Senin-Rabu).",a:20,ex:"(18 + 22 + 20) / 3 = 20.",h:["Jumlahkan tiga angka, bagi 3."]},
+{id:"p2",t:"num",lv:1,tag:"Praktik",q:"Hitung rata-rata antrean istirahat kedua.",a:10,ex:"(9 + 11 + 10) / 3 = 10.",h:["Jumlahkan 9, 11, 10 lalu bagi 3."]},
+{id:"b1",t:"num",lv:2,tag:"Bos 1/3",q:"Berapa selisih rata-rata antrean istirahat pertama dan kedua?",a:10,ex:"20 - 10 = 10 siswa.",h:["Pakai hasil dua praktik sebelumnya."]},
+{id:"b2",t:"sh",lv:2,tag:"Bos 2/3",q:"Tulis satu keterbatasan data OSIS yang perlu disampaikan saat melaporkan hasil.",k:[["tiga hari","3 hari","sedikit","terbatas","contoh latihan","bukan data nyata","penyebab"]],ex:"Pengamatan hanya tiga hari, berupa contoh latihan, dan penyebab belum diketahui.",h:["Lihat jumlah hari pengamatan."]},
+{id:"b3",t:"sh",lv:2,tag:"Bos 3/3",q:"Usulkan satu tindakan awal berdasarkan data, alasannya, dan data apa yang dikumpulkan untuk memeriksa keberhasilannya.",k:[["pertama"],["alur","antre","layanan","petugas","amati"],["jumlah","waktu","antrean","kumpul","catat"]],ex:"Contoh: amati layanan di istirahat pertama (antrean rata-rata 20 dibanding 10), lalu catat lagi jumlah antrean setelahnya.",h:["Sebut waktu yang perlu perhatian.","Sebut cara memeriksa keberhasilan."]}];
+const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const XP=[10,20,30],LB=["Mudah","Sedang","Sulit"];
+function card(q,box){const d=document.createElement("div");d.className="card";let hi=0,ans=null,chk;
+let h=`<span class="tag">${LB[q.lv]}</span>${q.tag?`<span class="tag">${q.tag}</span>`:""}${S.done[q.id]?'<span class="tag">✅ selesai</span>':""}<p><b>${q.t=="tf"?"Benar atau salah? "+E(q.s):E(q.q)}</b></p><div class="ar"></div><button class="btn ck">Periksa</button><button class="btn s ht">💡 Petunjuk</button><div class="r"></div>`;d.innerHTML=h;const ar=d.querySelector(".ar");
+if(q.t=="mc"||q.t=="tf"){let ops=q.t=="mc"?sh(q.o.map((t,i)=>[t,i==q.a])):[["Benar",q.a],["Salah",!q.a]];ar.innerHTML=ops.map((o,i)=>`<button class="o">${"ABCDE"[i]}. ${E(o[0])}</button>`).join("");
+ar.querySelectorAll(".o").forEach((b,i)=>b.onclick=()=>{ar.querySelectorAll(".o").forEach(x=>x.classList.remove("sel"));b.classList.add("sel");ans=i});chk=()=>ans!==null&&ops[ans][1]}
+else if(q.t=="mat"){let ds=sh(q.p.map(x=>x[1]));ar.innerHTML=q.p.map((x,i)=>`<p>${E(x[0])}<select><option value="">Pilih arti...</option>${ds.map(t=>`<option>${E(t)}</option>`).join("")}</select></p>`).join("");chk=()=>[...ar.querySelectorAll("select")].every((s,i)=>s.value==q.p[i][1])}
+else if(q.t=="scr"){let w=q.w,s;do s=sh(w.split("")).join("");while(s==w);ar.innerHTML=`<p style="font:800 28px 'Baloo 2';letter-spacing:6px">${s}</p><input placeholder="Ketik jawabanmu">`;chk=()=>ar.querySelector("input").value.trim().toUpperCase()==w}
+else if(q.t=="ord"){let pick=[],bs=sh(q.it);ar.innerHTML='<div class="pl"></div><div class="po"></div><button class="btn s rs">Ulangi</button>';const pl=ar.querySelector(".pl"),po=ar.querySelector(".po");
+const dr=()=>{pl.innerHTML="<ol>"+pick.map(x=>"<li>"+E(x)+"</li>").join("")+"</ol>";po.innerHTML="";bs.forEach(x=>{let b=document.createElement("button");b.className="chip";b.textContent=x;b.disabled=pick.includes(x);b.onclick=()=>{pick.push(x);dr()};po.appendChild(b)})};dr();ar.querySelector(".rs").onclick=()=>{pick=[];dr()};chk=()=>pick.join("|")==q.it.join("|")}
+else if(q.t=="fill"){ar.innerHTML='<input placeholder="Isi bagian kosong">';chk=()=>q.a.includes(ar.querySelector("input").value.trim().toLowerCase())}
+else if(q.t=="num"){ar.innerHTML='<input type="number" step="any" placeholder="Jawaban angka">';chk=()=>parseFloat(ar.querySelector("input").value.replace(",","."))==q.a}
+else{ar.innerHTML='<textarea style="min-height:90px" placeholder="Tulis jawabanmu dengan kata-kata sendiri"></textarea>';chk=()=>{let v=ar.querySelector("textarea").value.toLowerCase();return v.length>8&&q.k.every(g=>g.some(w=>v.includes(w)))}}
+const rs=d.querySelector(".r");
+d.querySelector(".ck").onclick=()=>{let ok=chk();rs.className="r "+(ok?"ok":"no");let first=ok&&!S.done[q.id];
+rs.innerHTML=(ok?"✅ Tepat! "+(first?"+"+XP[q.lv]+" XP. ":""):"❌ Belum tepat. Coba lagi dengan petunjuk. ")+"<br>Pembahasan: "+E(q.ex);if(first){S.done[q.id]=1;S.xp+=XP[q.lv];sv()}};
+d.querySelector(".ht").onclick=()=>{rs.className="r no";rs.textContent="💡 Petunjuk "+(hi%q.h.length+1)+": "+q.h[hi%q.h.length];hi++};
+box.appendChild(d)}
+function mount(list,id){const b=$(id);b.innerHTML="";list.forEach(q=>card(q,b));if(!list.length)b.innerHTML="<p>Belum ada soal pada tingkat ini.</p>"}
+function zona(){let f=$("fl").value;mount(Q.filter(q=>!["mc","tf"].includes(q.t)&&(f===""||q.lv==f)),"zb")}
+function kuis(){mount(sh(Q.filter(q=>["mc","tf"].includes(q.t))),"kb")}
+function cnt(p){return Q.filter(q=>q.id.startsWith(p)&&S.done[q.id]).length}
+function peta(){const M2=[["📖 Misi 1: Baca materi",S.read],["📝 Misi 2: Selesaikan 5 soal kuis",cnt("m")+cnt("t")>=5],["🧩 Misi 3: Cocokkan, susun, dan isi",cnt("c")+cnt("s")+cnt("o")+cnt("f")>=4],["🔍 Misi 4: Studi kasus dan praktik kantin",cnt("k")+cnt("p")>=3],["👑 Misi 5: Tantangan bos",cnt("b")>=3],["💭 Misi 6: Isi refleksi",S.ref&&S.ref.a]];
+$("pm").innerHTML=M2.map((m,i)=>`<div class="card ${i&&!M2[i-1][1]&&!m[1]?"lock":""}">${m[1]?"✅":"⭕"} ${m[0]}</div>`).join("")}
+function capai(){const B=[["🌱 Langkah pertama",S.xp>0],["🎯 Teliti: 5 tantangan benar",Object.keys(S.done).length>=5],["📊 Analis: 10 tantangan benar",Object.keys(S.done).length>=10],["👑 Penakluk bos",cnt("b")>=3],["⭐ Level 3",lvl()>=3]];
+$("cb").innerHTML=`<div class="card"><h3>Level ${lvl()} | ${S.xp} XP</h3></div>`+B.map(b=>`<div class="card ${b[1]?"":"lock"}">${b[1]?"🏅":"🔒"} ${b[0]}</div>`).join("")}
+function refl(){S.ref={a:$("r1").value,b:$("r2").value,c:$("r3").value};sv();$("rs").textContent="Tersimpan."}
+function tema(){let v=$("th").value;if(v)document.documentElement.dataset.theme=v;else delete document.documentElement.dataset.theme}
+function kunci(){if($("kg").value!="guru")return $("kj").textContent="Kode salah.";
+$("kj").innerHTML=Q.map(q=>`<p><b>${E(q.q||q.s)}</b><br>Kunci: ${E(String(q.t=="mc"?q.o[q.a]:q.t=="tf"?(q.a?"Benar":"Salah"):q.t=="mat"?q.p.map(x=>x[0]+" = "+x[1]).join("; "):q.t=="scr"?q.w:q.t=="ord"?q.it.join(" > "):q.t=="fill"?q.a[0]:q.t=="num"?q.a:"Kata kunci: "+q.k.map(g=>g.join("/")).join(" + ")))}<br><small>${E(q.ex)}</small></p>`).join("")}
+if(S.ref&&S.ref.a!==undefined){$("r1").value=S.ref.a;$("r2").value=S.ref.b;$("r3").value=S.ref.c}
+showM();stat();go(["beranda","materi","peta","zona","kuis","capai","refleksi","atur"].includes(location.hash.slice(1))?location.hash.slice(1):"beranda");
+</script></body></html>
